@@ -20,11 +20,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 body {
   background: var(--background);
@@ -35,7 +30,16 @@ body {
 }
 
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
+}
+
+@layer components {
+  .section-padding {
+    padding-left: clamp(1.5rem, 5vw, 4rem);
+    padding-right: clamp(1.5rem, 5vw, 4rem);
+    padding-top: clamp(4rem, 10vw, 8rem);
+    padding-bottom: clamp(4rem, 10vw, 8rem);
+  }
 }
 
 /* Custom Scrollbar Styles */

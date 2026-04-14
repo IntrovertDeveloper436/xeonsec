@@ -54,9 +54,6 @@ const Process = () => {
 
                   {/* Content Box */}
                   <div className={`ml-16 md:ml-0 md:w-[45%] ${isEven ? 'md:text-right md:pr-16 text-left' : 'md:text-left md:pl-16 md:order-last text-left'} `}>
-                    <span className="inline-block text-xs uppercase tracking-widest font-bold text-[#00d4ff] mb-3 px-3 py-1 bg-[#00d4ff]/10 rounded-full border border-[#00d4ff]/20">
-                      {step.week}
-                    </span>
                     <h4 className="text-2xl md:text-3xl font-bold mb-4 text-white">
                       {step.title}
                     </h4>

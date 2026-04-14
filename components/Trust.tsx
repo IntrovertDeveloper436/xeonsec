@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
+import Image from "next/image";
 import { Star } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -45,7 +46,7 @@ const allTestimonials = [
 ];
 
 const TestimonialCard = ({ data }: { data: any }) => (
-  <div className="w-[320px] md:w-[400px] shrink-0 bg-[#0a0a0a] border border-white/5 rounded-2xl p-6 md:p-8 flex flex-col justify-between hover:bg-white/[0.03] transition-colors shadow-lg">
+  <div className="w-[280px] sm:w-[320px] md:w-[400px] shrink-0 bg-[#0a0a0a] border border-white/5 rounded-2xl p-6 md:p-8 flex flex-col justify-between hover:bg-white/[0.03] transition-colors shadow-lg">
     <div>
       <div className="flex gap-1 mb-6">
         {[...Array(5)].map((_, i) => (
@@ -57,8 +58,10 @@ const TestimonialCard = ({ data }: { data: any }) => (
       </p>
     </div>
     <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
-      <div className="flex items-center gap-3">
-        <img src={data.avatar} alt={data.name} className="w-10 h-10 rounded-full border border-white/10" />
+      <div className="flex items-center gap-3 relative">
+        <div className="w-10 h-10 rounded-full border border-white/10 relative overflow-hidden shrink-0">
+          <Image src={data.avatar} alt={data.name} fill unoptimized className="object-cover" />
+        </div>
         <span className="text-white font-medium text-sm">{data.name}</span>
       </div>
       <span className="text-neutral-500 text-xs">{data.role}</span>

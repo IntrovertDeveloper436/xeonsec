@@ -1,5 +1,5 @@
 import SmoothScroll from "@/components/SmoothScroll";
-import Navbar from "@/components/Navbar";
+import NavbarAnimation from "@/components/NavbarAnimation";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -15,8 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Agency | Product Strategy & High-Leverage Tech Studio",
+  title: "XeonSec | Product Strategy & High-Leverage Tech Studio",
   description: "We don’t just build software. We design product strategy for high-leverage tech ideas. 4 projects at a time, senior-level focus, rapid execution.",
+  icons: {
+    icon: '/xeonsec.jpg',
+  }
 };
 
 export default function RootLayout({
@@ -31,7 +34,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="bg-background text-foreground selection:bg-white selection:text-black" suppressHydrationWarning>
-        <Navbar />
+        {/* Animated Navbar */}
+        <NavbarAnimation />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -88,13 +89,15 @@ const WorkGallery = () => {
               ${i === projects.length - 1 ? 'mr-[10vw] md:mr-[27.5vw]' : ''}
             `}
           >
-            <img 
+            <Image 
               src={project.image} 
               alt={project.title}
-              className="absolute inset-0 w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000 opacity-40 group-hover:opacity-60"
+              fill
+              unoptimized
+              className="absolute inset-0 object-cover scale-110 group-hover:scale-100 transition-transform duration-1000 opacity-40 group-hover:opacity-60 z-0"
             />
             
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent p-8 md:p-12 flex flex-col justify-end">
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent p-8 md:p-12 flex flex-col justify-end z-10">
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#00d4ff] mb-4 font-bold block">
                 {project.tag}
               </span>

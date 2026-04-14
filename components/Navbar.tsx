@@ -3,6 +3,8 @@
 
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,14 +18,14 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-[1200px] px-6">
-      <div className="bg-cyan-800 rounded-full px-8 py-3 flex items-center justify-between gap-12 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)]">
+      <div className="bg-cyan-800 rounded-full px-0 py-3 flex items-center justify-between gap-12 border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)] overflow-hidden">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-full bg-[#00d4ff] flex items-center justify-center shadow-[0_0_20px_rgba(0,212,255,0.4)] group-hover:scale-110 transition-transform">
-            <span className="text-black font-black text-lg tracking-tighter">X</span>
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center shadow-[0_0_20px_rgba(0,212,255,0.4)] group-hover:scale-110 transition-transform">
+            <Image src="/xeonsec.jpg" alt="Logo" width={40} height={40} className="object-cover" />
           </div>
           <span className="text-white font-bold text-lg tracking-tight group-hover:text-[#00d4ff] transition-colors">XeonSec</span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-10">
@@ -31,7 +33,7 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="text-neutral-400 hover:text-white transition-all text-sm "
+              className="text-white font-normal hover:text-[#00d4ff] transition-all text-sm"
             >
               {link.label}
             </a>
@@ -39,9 +41,9 @@ export default function Navbar() {
         </div>
 
         {/* CTA Button */}
-        <button className="hidden md:block inline-flex items-center justify-center rounded-full bg-white text-black font-semibold !px-5 sm:!px-6 !py-2.5 sm:!py-3 min-h-10 leading-none text-xs uppercase tracking-[0.2em] hover:bg-[#00d4ff] hover:text-black transition-all active:scale-95 shadow-lg">
+        <Link href="/dev" className="hidden md:block inline-flex items-center justify-center rounded-full bg-white text-black font-semibold !px-5 sm:!px-6 !py-2.5 sm:!py-3 min-h-10 leading-none text-xs uppercase tracking-[0.2em] hover:bg-[#00d4ff] hover:text-black transition-all active:scale-95 shadow-lg">
           Devs
-        </button>
+        </Link>
 
         {/* Mobile Menu Toggle */}
         <button
@@ -60,13 +62,13 @@ export default function Navbar() {
               key={link.label}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="block text-neutral-400 hover:text-[#00d4ff] transition-colors text-lg font-bold py-2 border-b border-white/5"
+              className="block text-white hover:text-[#00d4ff] transition-colors text-lg font-normal py-2 border-b border-white/5"
             >
               {link.label}
             </a>
           ))}
           <button className="w-full px-6 py-4 bg-[#00d4ff] text-black rounded-full font-black text-xs uppercase tracking-widest mt-4">
-            Start Project
+            Devs
           </button>
         </div>
       )}
