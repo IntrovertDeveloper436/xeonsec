@@ -17,6 +17,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "XeonSec | Product Strategy & High-Leverage Tech Studio",
   description: "We don’t just build software. We design product strategy for high-leverage tech ideas. 4 projects at a time, senior-level focus, rapid execution.",
+  keywords: [
+    "Product Strategy",
+    "Tech Studio",
+    "Software Engineering",
+    "Machine Learning",
+    "Cybersecurity",
+    "Next.js Development",
+    "Blockchain",
+    "MLOps",
+    "DevOps",
+    "High-Leverage Tech"
+  ],
   icons: {
     icon: '/xeonsec.jpg',
   }

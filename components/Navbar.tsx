@@ -67,9 +67,9 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <button className="w-full px-6 py-4 bg-[#00d4ff] text-black rounded-full font-black text-xs uppercase tracking-widest mt-4">
+          <Link href="/dev" className="w-full px-6 py-4 bg-[#00d4ff] text-black rounded-full font-black text-xs uppercase tracking-widest mt-4">
             Devs
-          </button>
+          </Link>
         </div>
       )}
     </nav>
