@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "XeonSec | Cybersecurity & Development Agency",
-  description: "Expert in Cyber Security, ML, Software Development, Blockchain, DevOps, and MLOps",
+  title: "Agency | Product Strategy & High-Leverage Tech Studio",
+  description: "We don’t just build software. We design product strategy for high-leverage tech ideas. 4 projects at a time, senior-level focus, rapid execution.",
 };
 
 export default function RootLayout({
@@ -28,8 +28,9 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-neutral-950 text-neutral-50">
+      <body className="bg-background text-foreground selection:bg-white selection:text-black" suppressHydrationWarning>
         <Navbar />
         <SmoothScroll>{children}</SmoothScroll>
       </body>

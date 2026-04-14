@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -33,14 +33,14 @@ export default function TechStack() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="py-24 bg-neutral-900 overflow-hidden border-y border-neutral-800">
-      <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
+    <section ref={containerRef} className="section-padding bg-neutral-900 overflow-hidden border-y border-neutral-800">
+      <div className="mb-12 text-center">
         <h2 className="text-sm font-semibold tracking-widest text-neutral-400 uppercase">
           Expertise in Cutting-Edge Tech Stack
         </h2>
       </div>
       
-      <div className="relative flex overflow-hidden group">
+      <div className="w-full max-w-7xl mx-auto relative flex overflow-hidden group">
         <div ref={marqueeRef} className="flex gap-16 md:gap-24 whitespace-nowrap pl-16 md:pl-24">
           {marqueeItems.map((tech, index) => (
             <div key={index} className="flex items-center justify-center">

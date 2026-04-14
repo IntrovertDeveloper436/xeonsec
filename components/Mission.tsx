@@ -43,41 +43,18 @@ export default function Mission() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center px-6 py-24 bg-gradient-to-b from-neutral-900 to-neutral-950 relative overflow-hidden"
+      className="section-padding min-h-screen flex items-center justify-center bg-neutral-950"
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <div className="w-96 h-96 bg-cyan-500 rounded-full blur-3xl" />
-        </div>
-      </div>
-
-      <div className="max-w-4xl mx-auto relative z-10">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-cyan-400 text-sm font-semibold mb-6">
-            Our Vision
-          </span>
-        </div>
+      <div className="max-w-4xl mx-auto">
         <p
           ref={textRef}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-white flex flex-wrap gap-x-[0.3em] gap-y-2 justify-center"
+          className="text-4xl md:text-6xl lg:text-7xl font-medium leading-tight tracking-tight text-white flex flex-wrap gap-x-[0.3em] gap-y-2"
         >
-          {words.map((word, i) => {
-            const highlightWords = ["enterprise-grade", "cybersecurity", "precision", "innovation"];
-            const shouldHighlight = highlightWords.includes(word.toLowerCase().replace(/[.,;:!?—]/g, ''));
-            return (
-              <span 
-                key={i} 
-                className={`mission-word ${
-                  shouldHighlight 
-                    ? "text-transparent bg-clip-text bg-gradient-to-r from-[#00d4ff] to-[#0099cc]" 
-                    : "text-white"
-                }`}
-              >
-                {word}
-              </span>
-            );
-          })}
+          {words.map((word, i) => (
+            <span key={i} className="mission-word text-white">
+              {word}
+            </span>
+          ))}
         </p>
       </div>
     </section>
