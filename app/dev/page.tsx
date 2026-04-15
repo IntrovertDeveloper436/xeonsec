@@ -10,38 +10,62 @@ const PixelBlast = dynamic(() => import("@/components/PixelBlast"), { ssr: false
 
 const team = [
   {
-    name: "Alex R.",
-    role: "Lead Systems Director",
-    bio: "architecting event-driven infrastructure and zero-latency systems.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2000&auto=format&fit=crop",
+    name: "Swayam Sopnic Nayak",
+    role: "CEO & Founder",
+    experience: "4+ Years Industry Experience",
+    expertise: "DFIR , OSINT , Malware Analysis",
+    image: "/swayam.webp",
     stats: { users: 284, projects: 42 },
+    socials: {
+      linkedin: "https://www.linkedin.com/in/swayamsopnic/",
+      github: "https://github.com/swayamsopnic",
+      email: "tech145boy@gmail.com"
+    }
   },
   {
-    name: "Jordan K.",
-    role: "Strategy & AI Director",
-    bio: "designing predictive ML pipelines and strategic intelligence models.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2000&auto=format&fit=crop",
+    name: "Ashish Kumar Jena",
+    role: "CTO & Co-Founder",
+    experience: "2+ Years Industry Experience",
+    expertise: "Full StackDevelopment , Devops , System Design",
+    image: "/ashish.webp",
     stats: { users: 512, projects: 68 },
+    socials: {
+      linkedin: "https://www.linkedin.com/in/ashish-kumar-jena/",
+      github: "https://github.com/Ashishkumar448",
+      email: "ashishkumar48.connect@gmail.com"
+    }
   },
   {
     name: "Taylor S.",
     role: "Technical Security Director",
-    bio: "offensive security, system hardening, and structural integrity.",
+    experience: "5+ Years Offensive Security",
+    expertise: "Offensive Security, Penetration Testing",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2000&auto=format&fit=crop",
     stats: { users: 195, projects: 31 },
+    socials: {
+      linkedin: "#",
+      github: "#",
+      email: "taylor@xeonsec.com"
+    }
   },
   {
     name: "Eli M.",
     role: "Creative Strategy Director",
-    bio: "translating complex logic into intuitive and high-performance user experiences.",
+    experience: "8+ Years Product Strategy",
+    expertise: "User Experience, Product Design",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2000&auto=format&fit=crop",
     stats: { users: 312, projects: 48 },
+    socials: {
+      linkedin: "#",
+      github: "#",
+      email: "eli@xeonsec.com"
+    }
   },
 ];
 
 export default function DevsPage() {
   return (
-    <main className="min-h-screen bg-black flex flex-col items-center justify-start px-6 pt-32 pb-20 relative overflow-hidden">
+    <main className="min-h-screen bg-black flex flex-col items-center justify-start px-6 md:px-16 lg:px-24 pt-32 pb-20 relative">
 
       {/* ── PixelBlast full-page background ──────────────────────────────── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -69,43 +93,47 @@ export default function DevsPage() {
       {/* Gradient overlay so content sits comfortably on the pixel bg */}
       <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
 
-      {/* ── Hero copy ─────────────────────────────────────────────────────── */}
-      <div className="w-full max-w-5xl mx-auto flex flex-col items-center text-center z-10 mb-20 px-4">
-        <div className="flex items-center gap-2 mb-6">
-          <div className="w-12 h-[1px] bg-[#00D4FF]/50" />
-          <h2 className="text-[#00D4FF] tracking-[0.3em] uppercase text-xs font-black">The Executing Force</h2>
-          <div className="w-12 h-[1px] bg-[#00D4FF]/50" />
+      {/* ── Main Layout Container ────────────────────────────────────────── */}
+      <div className="w-full max-w-[1600px] flex flex-col md:flex-row items-start gap-10 lg:gap-20 z-10">
+
+        {/* ── Left Section (30%): Hero copy - Sticky Center ─────────────── */}
+        <div className="w-full md:w-[30%] md:h-screen md:sticky md:top-0 flex flex-col items-start justify-center text-left shrink-0">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-8 h-[1px] bg-[#00D4FF]/50" />
+            <h2 className="text-[#00D4FF] tracking-[0.3em] uppercase text-[10px] sm:text-xs font-black">The Team Behind The XeonSec</h2>
+          </div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white mb-4 uppercase tracking-tighter leading-none">
+            Meet Our <span className="text-[#00D4FF] italic block">Directors</span>
+          </h1>
+          <p className="text-neutral-400 text-sm md:text-base lg:text-lg mb-8 max-w-sm">
+            We do not offshore. You are buying the direct focus of these architects.
+          </p>
+
+          <Link
+            href="/contact"
+            className="bg-[#00D4FF] text-black font-black uppercase tracking-[0.2em] text-xs px-6 py-3.5 rounded-full hover:bg-white hover:scale-105 transition-all shadow-[0_0_30px_rgba(0,212,255,0.3)]"
+          >
+            Contact Us
+          </Link>
         </div>
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter">
-          Senior <span className="text-[#00D4FF] italic pr-2">Engineers</span> Only
-        </h1>
-        <p className="text-neutral-400 text-lg md:text-xl max-w-2xl">
-          We do not offshore. We do not use juniors. When you partner with us, you are buying the direct focus of these architects.
-        </p>
-      </div>
 
-      {/* ── Team grid: 4 cards, 2x2 layout on desktop ───────────────────── */}
-      <div className="w-full max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 z-10">
-        {team.map((member, idx) => (
-          <DirectorCard
-            key={idx}
-            name={member.name}
-            role={member.role}
-            bio={member.bio}
-            image={member.image}
-            stats={member.stats}
-          />
-        ))}
-      </div>
-
-      {/* ── CTA ───────────────────────────────────────────────────────────── */}
-      <div className="w-full flex justify-center mt-20 z-10">
-        <Link
-          href="/contact"
-          className="bg-[#00D4FF] text-black font-black uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-white hover:scale-105 transition-all shadow-[0_0_30px_rgba(0,212,255,0.3)]"
-        >
-          Hire the Team
-        </Link>
+        {/* ── Right Section (70%): Team grid - Scrolling ────────────────── */}
+        <div className="w-full md:w-[70%] grid grid-cols-2 gap-4 lg:gap-6 items-center pt-32 pb-20">
+          {team.map((member, idx) => (
+            <DirectorCard
+              key={idx}
+              name={member.name}
+              role={member.role}
+              experience={member.experience}
+              expertise={member.expertise}
+              image={member.image}
+              stats={member.stats}
+              compact={true}
+              socials={member.socials}
+              priority={idx < 2}
+            />
+          ))}
+        </div>
       </div>
     </main>
   );

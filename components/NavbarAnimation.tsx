@@ -17,31 +17,66 @@ export default function NavbarAnimation() {
 
   useEffect(() => {
     const tl = gsap.timeline();
-    tl.set([textRef.current, devsRef.current, hamburgerRef.current, ...navLinksRef.current], { opacity: 0 });
+    
+    // Initial state for children - hidden and no space taken
+    tl.set([textRef.current, devsRef.current, hamburgerRef.current, ...navLinksRef.current].filter(Boolean), { 
+      opacity: 0, 
+      display: "none" 
+    });
+
+    // Set initial circular state for capsule
     tl.set(capsuleRef.current, {
-      width: 44,
+      width: 52,
       borderRadius: 9999,
       paddingLeft: 0,
       paddingRight: 0,
+      justifyContent: "center",
       zIndex: 50,
       margin: "0 auto",
+      scale: 0,
+      opacity: 0
     });
-    // Ensure it's opaque for the timeline
-    tl.to(capsuleRef.current, { opacity: 1, duration: 0.1 });
 
-    tl.fromTo(
-      logoCircleRef.current,
-      { scale: 0, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.7, ease: "back.out(1.7)" }
-    )
-      .to(
-        capsuleRef.current,
-        { scaleX: 1, width: "100%", paddingLeft: 3, paddingRight: 3, duration: 1, ease: "expo.inOut" },
-        "+=0.1"
-      )
-      .to(textRef.current,    { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, "-=0.2")
-      .to(navLinksRef.current, { opacity: 1, stagger: 0.08, duration: 0.3, ease: "power2.out" }, "-=0.2")
-      .to([devsRef.current, hamburgerRef.current], { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.7)" }, "+=0.1");
+    // 1. Scale up the circle containing the logo
+    tl.to(capsuleRef.current, { 
+      opacity: 1, 
+      scale: 1, 
+      duration: 0.8, 
+      ease: "back.out(1.7)" 
+    });
+
+    // Scale up the logo inside the circle
+    tl.to(logoCircleRef.current, 
+      { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" },
+      "-=0.6"
+    );
+
+    // 2. Expand the capsule horizontally
+    tl.to(capsuleRef.current, { 
+      width: "100%", 
+      paddingLeft: 3, 
+      paddingRight: 3, 
+      duration: 1.2, 
+      ease: "expo.inOut",
+      onStart: () => {
+        // Switch to space-between as we grow
+        gsap.set(capsuleRef.current, { justifyContent: "space-between" });
+        // Restore elements to their CSS-defined display state (e.g. md:hidden will work again)
+        gsap.set([textRef.current, devsRef.current, hamburgerRef.current, ...navLinksRef.current].filter(Boolean), { 
+          display: "" 
+        });
+      }
+    }, "+=0.1");
+
+    // 3. Fade in all the text and links
+    tl.to(textRef.current,    { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, "-=0.4")
+      .to(navLinksRef.current, { opacity: 1, stagger: 0.08, duration: 0.3, ease: "power2.out" }, "-=0.3")
+      .to([devsRef.current, hamburgerRef.current].filter(Boolean), { 
+        opacity: 1, 
+        scale: 1, 
+        duration: 0.4, 
+        ease: "back.out(1.7)" 
+      }, "-=0.2");
   }, []);
 
   const navLinks = [
@@ -69,12 +104,12 @@ export default function NavbarAnimation() {
       {/* ── Liquid-glass capsule ─────────────────────────────────────────── */}
       <div
         ref={capsuleRef}
-        className="relative rounded-full flex items-center justify-between overflow-hidden"
+        className="relative rounded-full flex items-center justify-center overflow-hidden"
         style={{
           height: 52,
           minHeight: 52,
           margin: "0 auto",
-          width: 44,
+          width: 52,
           paddingLeft: 0,
           paddingRight: 0,
           /* Glass body */
@@ -94,7 +129,7 @@ export default function NavbarAnimation() {
             0 2px 12px rgba(0,180,230,0.14)
           `,
           opacity: 0, // Hidden initially to prevent flicker
-          transform: "scaleX(0)", // Closed initially
+          transform: "scale(0)", // Closed initially
         }}
       >
         {/* Layer 1 — caustic light blob (upper-left) */}

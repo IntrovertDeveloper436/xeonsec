@@ -10,7 +10,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       options={{
         lerp: 0.08,
         duration: 1,
-        smoothWheel: false,
+        smoothWheel: true,
       }}
     >
       {children}
