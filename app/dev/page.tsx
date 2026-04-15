@@ -2,65 +2,81 @@
 
 import React from "react";
 import Link from "next/link";
-import { Code2, Server, Shield, BrainCircuit, Terminal, Cpu } from "lucide-react";
+import dynamic from "next/dynamic";
+import DirectorCard from "@/components/DirectorCard";
+
+// Load PixelBlast client-side only (requires WebGL + browser APIs)
+const PixelBlast = dynamic(() => import("@/components/PixelBlast"), { ssr: false });
 
 const team = [
   {
     name: "Alex R.",
-    role: "Lead Systems Architect",
-    specialty: "Event-Driven & Distributed Systems",
-    icon: <Server className="text-[#00D4FF] mb-4" size={40} />,
-    bio: "Ex-FAANG backend specialist obsessed with Kafka, latency minimization, and zero-downtime deployments.",
+    role: "Lead Systems Director",
+    bio: "architecting event-driven infrastructure and zero-latency systems.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2000&auto=format&fit=crop",
+    stats: { users: 284, projects: 42 },
   },
   {
     name: "Jordan K.",
-    role: "ML Intelligence Director",
-    specialty: "Predictive Modeling & RAG",
-    icon: <BrainCircuit className="text-[#00D4FF] mb-4" size={40} />,
-    bio: "Designed scalable LLM pipelines and embedding strategies for enterprise fintech and healthcare.",
+    role: "Strategy & AI Director",
+    bio: "designing predictive ML pipelines and strategic intelligence models.",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2000&auto=format&fit=crop",
+    stats: { users: 512, projects: 68 },
   },
   {
     name: "Taylor S.",
-    role: "Principal Security Engineer",
-    specialty: "Offensive Security & Hardening",
-    icon: <Shield className="text-[#00D4FF] mb-4" size={40} />,
-    bio: "Red-team veteran who ensures every shipped product has zero-compromise encryption and structural integrity.",
+    role: "Technical Security Director",
+    bio: "offensive security, system hardening, and structural integrity.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2000&auto=format&fit=crop",
+    stats: { users: 195, projects: 31 },
   },
   {
     name: "Eli M.",
-    role: "Senior Full-Stack Engineer",
-    specialty: "Next.js & Frontend Architecture",
-    icon: <Code2 className="text-[#00D4FF] mb-4" size={40} />,
-    bio: "Pixel-perfect executor who translates brutal backend logic into gorgeous, accessible, and high-performance UIs.",
-  },
-  {
-    name: "Nico V.",
-    role: "DevOps Lead",
-    specialty: "Kubernetes & Infrastructure",
-    icon: <Terminal className="text-[#00D4FF] mb-4" size={40} />,
-    bio: "Automates everything. Ensures code ships from staging to production in under 5 minutes securely.",
-  },
-  {
-    name: "Sam T.",
-    role: "Data Engineering",
-    specialty: "Pipeline Architecture",
-    icon: <Cpu className="text-[#00D4FF] mb-4" size={40} />,
-    bio: "Builds massive, reliable data pipelines ensuring ML models have clean, real-time ingestion streams.",
+    role: "Creative Strategy Director",
+    bio: "translating complex logic into intuitive and high-performance user experiences.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2000&auto=format&fit=crop",
+    stats: { users: 312, projects: 48 },
   },
 ];
 
 export default function DevsPage() {
   return (
-    <main className="min-h-screen bg-black flex flex-col items-center justify-start px-6 pt-32 pb-20 relative">
-      <div className="absolute top-0 w-full h-[600px] bg-gradient-to-b from-cyan-900/20 to-transparent pointer-events-none" />
-      
-      <div className="w-full max-w-5xl mx-auto flex flex-col items-center text-center z-10 mb-20">
+    <main className="min-h-screen bg-black flex flex-col items-center justify-start px-6 pt-32 pb-20 relative overflow-hidden">
+
+      {/* ── PixelBlast full-page background ──────────────────────────────── */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <PixelBlast
+          variant="square"
+          pixelSize={4}
+          color="#00d4ff"
+          patternScale={2}
+          patternDensity={0.92}
+          pixelSizeJitter={0}
+          enableRipples
+          rippleSpeed={0.4}
+          rippleThickness={0.12}
+          rippleIntensityScale={1.5}
+          liquid={false}
+          liquidStrength={0.12}
+          liquidRadius={1.2}
+          liquidWobbleSpeed={5}
+          speed={0.4}
+          edgeFade={0.22}
+          transparent
+        />
+      </div>
+
+      {/* Gradient overlay so content sits comfortably on the pixel bg */}
+      <div className="absolute inset-0 z-[1] pointer-events-none bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
+
+      {/* ── Hero copy ─────────────────────────────────────────────────────── */}
+      <div className="w-full max-w-5xl mx-auto flex flex-col items-center text-center z-10 mb-20 px-4">
         <div className="flex items-center gap-2 mb-6">
           <div className="w-12 h-[1px] bg-[#00D4FF]/50" />
           <h2 className="text-[#00D4FF] tracking-[0.3em] uppercase text-xs font-black">The Executing Force</h2>
           <div className="w-12 h-[1px] bg-[#00D4FF]/50" />
         </div>
-        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter">
           Senior <span className="text-[#00D4FF] italic pr-2">Engineers</span> Only
         </h1>
         <p className="text-neutral-400 text-lg md:text-xl max-w-2xl">
@@ -68,36 +84,23 @@ export default function DevsPage() {
         </p>
       </div>
 
-      <div className="w-full max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 z-10">
-        {team.map((dev, idx) => (
-          <div 
-            key={idx} 
-            className="group relative bg-[#09090b] rounded-3xl p-8 border border-white/10 hover:border-[#00D4FF]/40 transition-colors overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#00D4FF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            
-            <div className="relative z-10 flex flex-col items-start">
-              {dev.icon}
-              <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-1">{dev.name}</h3>
-              <p className="text-[#00D4FF] font-mono text-sm tracking-widest mb-4">{dev.role}</p>
-              
-              <div className="w-full h-[1px] bg-white/10 mb-4 group-hover:bg-[#00D4FF]/20 transition-colors" />
-              
-              <div className="mb-4">
-                <span className="text-xs uppercase tracking-widest text-neutral-500 block mb-1">Domain</span>
-                <span className="text-white text-sm font-semibold">{dev.specialty}</span>
-              </div>
-              
-              <p className="text-neutral-400 text-sm leading-relaxed">
-                {dev.bio}
-              </p>
-            </div>
-          </div>
+      {/* ── Team grid: 4 cards, 2x2 layout on desktop ───────────────────── */}
+      <div className="w-full max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 z-10">
+        {team.map((member, idx) => (
+          <DirectorCard
+            key={idx}
+            name={member.name}
+            role={member.role}
+            bio={member.bio}
+            image={member.image}
+            stats={member.stats}
+          />
         ))}
       </div>
 
+      {/* ── CTA ───────────────────────────────────────────────────────────── */}
       <div className="w-full flex justify-center mt-20 z-10">
-        <Link 
+        <Link
           href="/contact"
           className="bg-[#00D4FF] text-black font-black uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-white hover:scale-105 transition-all shadow-[0_0_30px_rgba(0,212,255,0.3)]"
         >

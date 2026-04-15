@@ -3,7 +3,7 @@ import Problem from "@/components/Problem";
 import Services from "@/components/Services";
 import dynamic from "next/dynamic";
 
-const TechStack = dynamic(() => import("@/components/TechStack"));
+const TechCircle = dynamic(() => import("@/components/TechCircle"));
 const Mission = dynamic(() => import("@/components/Mission"));
 const Process = dynamic(() => import("@/components/Process"));
 const WorkGallery = dynamic(() => import("@/components/WorkGallery"));
@@ -18,7 +18,7 @@ export default function Home() {
       <Hero />
       <Problem />
       <Services />
-      <TechStack />
+      <TechCircle />
       <Mission />
       <Process />
       <WorkGallery />
